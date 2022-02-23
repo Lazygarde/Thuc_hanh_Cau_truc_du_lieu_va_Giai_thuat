@@ -1,6 +1,14 @@
 #include <bits/stdc++.h>
 #define endl "\n"
 using namespace std;
+int n, k, a[15], b[15];
+bool check()
+{
+    for (int i = 1; i <= k; i++)
+        if (a[i] != b[i])
+            return 0;
+    return 1;
+}
 int main()
 {
     ios_base::sync_with_stdio(0);
@@ -9,27 +17,23 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, k, x, p = 0;
+        int p = 0;
         cin >> n >> k;
-        string a = "", b = "";
-        a += ' ';
-        b += ' ';
         for (int i = 1; i <= k; i++)
         {
-            cin >> x;
-            a += to_string(i);
-            b += to_string(x);
+            a[i] = i;
+            cin >> b[i];
         }
         while (++p)
         {
-            if (a == b)
+            if (check())
             {
                 cout << p << endl;
                 break;
             }
             for (int i = k; i >= 1; i--)
             {
-                if (a[i] - '0' != n - k + i)
+                if (a[i] != n - k + i)
                 {
                     a[i]++;
                     for (int j = i + 1; j <= k; j++)
